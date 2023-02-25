@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = project.maven_group
+version = project.lib_version
+archivesBaseName = project.archives_base_name
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenLocal()
+    maven { url "https://repo.maven.apache.org/maven2/" }
+}
+
+dependencies {
+    implementation "net.java.dev.jna:jna-platform:5.9.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31"
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
