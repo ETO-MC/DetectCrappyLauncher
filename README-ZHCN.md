@@ -5,13 +5,13 @@
 # 使用
 如果你的项目使用 Kotlin：
 ~~~kotlin
-import org.etomc.dclauncher.LauncherChecker
+import org.etomc.detectcrappylauncher.LauncherChecker
 
 LauncherChecker.fullCheck(Minecraft.getMinecraft().mcDataDir/*, true*/) // boolean
 ~~~
 如果你的项目使用 Java：
 ~~~java
-import org.etomc.dclauncher.LauncherChecker;
+import org.etomc.detectcrappylauncher.LauncherChecker;
 
 LauncherChecker.INSTANCE.fullCheck(Minecraft.getMinecraft().mcDataDir/*, true*/);
 ~~~

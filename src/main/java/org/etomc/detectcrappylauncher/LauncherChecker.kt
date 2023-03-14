@@ -3,48 +3,48 @@ package org.etomc.detectcrappylauncher
 import java.io.File
 
 /**
- * A library checks Plain Craft Launcher
- * @author guimc, liuli (The UnlegitMC Team)
+ * A library checks Minecraft Launcher
+ * @author ETO-MC
  */
 object LauncherChecker {
     /**
-     * run full PCL check
+     * run full Launcher check
      * @param mcDir minecraft folder path
-     * @param deleteFolder delete PCL data folder for next PCL deleted check
+     * @param deleteFolder delete Launcher data folder for next Launcher deleted check
      * @return check result
      */
     @JvmOverloads
-    fun fullCheck(mcDir: File, deleteFolder: Boolean = true): Boolean {
-        // check if there is a window named PCL
-        if (titleCheck())
+    fun fullCheck(mcDir: File, launcherWindowName: String, deleteFolder: Boolean = true): Boolean {
+        // check if there is a window named Launcher
+        if (titleCheck(launcherWindowName))
             return true
 
-        // maybe the window not exists like close the window after launched , so we need to check the PCL data folder
+        // maybe the window not exists like close the window after launched , so we need to check the Launcher data folder
         if (folderCheck(mcDir, deleteFolder))
             return true
 
-        // PCL is not exists in the PC
+        // Launcher is not exists in the PC
         return false
     }
 
     /**
-     * run PCL title check
-     * check if there exists a title name contained "Plain Craft Launcher"
+     * run Launcher title check
+     * check if there exists a title name contained Launcher
      * @return check result
      */
-    fun titleCheck(): Boolean {
+    fun titleCheck(launcherWindowName: String): Boolean {
         return if (!WindowCheckUtils.isWindows()) {
             false // PCL and the native file only support windows
-        } else { // PCL Title "Plain Craft Launcher 2"
-            val targetStr="Plain Craft Launcher"
+        } else {
+            val targetStr=launcherWindowName
             WindowCheckUtils.getWindowNames().find { it.length < targetStr.length*2 && it.contains(targetStr) } != null
         }
     }
 
     /**
-     * run PCL data folder check
+     * run Launcher data folder check
      * @param mcDir minecraft folder path
-     * @param deleteFolder delete PCL data folder for next PCL deleted check
+     * @param deleteFolder delete Launcher data folder for next PCL deleted check
      * @return check result
      */
     fun folderCheck(mcDir: File, deleteFolder: Boolean): Boolean {
